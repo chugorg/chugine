@@ -40,7 +40,7 @@ impl Runner {
     &mut self.window
   }
 
-  pub fn get_events(&self) -> &GlfwReceiver<(f64, WindowEvent)> {
-    &self.events
+  pub fn get_events(&mut self) -> &mut GlfwReceiver<(f64, WindowEvent)> {
+    &mut self.events
   }
 }
