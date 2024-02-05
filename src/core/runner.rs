@@ -32,6 +32,13 @@ impl Runner {
     }
   }
 
+  pub fn run(&mut self) {
+    while !self.window.should_close() {
+      self.window.swap_buffers();
+      self.glfw.poll_events();
+    }
+  }
+
   pub fn get_glfw(&mut self) -> &mut Glfw {
     &mut self.glfw
   }
