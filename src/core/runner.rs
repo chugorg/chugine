@@ -7,7 +7,7 @@ pub struct Runner {
 }
 
 impl Runner {
-  pub fn new(title: String, fullscreen: bool, width: u32, height: u32) -> Self {
+  pub fn new(title: &str, fullscreen: bool, width: u32, height: u32) -> Self {
     let monitor = glfw::Monitor::from_primary();
 
     let window_mode = if fullscreen {
