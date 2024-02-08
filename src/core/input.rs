@@ -1,12 +1,12 @@
 use glfw::{Key, Action};
 
-pub struct InputEvent {
+pub struct InputSystem {
     just_pressed: Vec<Key>,
     pressed: Vec<Key>,
     just_released: Vec<Key>,
 }
 
-impl InputEvent {
+impl InputSystem {
     pub fn is_just_pressed(&self, key: Key) -> bool {
         self.just_pressed.contains(&key)
     }
@@ -22,6 +22,14 @@ impl InputEvent {
     pub fn clear(&mut self) {
         self.just_pressed.clear();
         self.just_released.clear();
+    }
+
+    pub fn new() -> Self {
+        Self {
+            just_pressed: Vec::new(),
+            pressed: Vec::new(),
+            just_released: Vec::new(),
+        }
     }
 
     pub fn update(&mut self, key: Key, action: Action) {

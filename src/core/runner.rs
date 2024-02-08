@@ -1,4 +1,6 @@
-use glfw::{Context, Glfw, GlfwReceiver, PWindow, WindowEvent, Key, Action};
+use glfw::{Context, Glfw, GlfwReceiver, PWindow, WindowEvent};
+
+use crate::InputSystem;
 
 pub struct Runner {
   glfw: Glfw,
@@ -32,19 +34,16 @@ impl Runner {
     }
   }
 
-  pub fn run(&mut self) {
+  pub fn run(&mut self, mut input: InputSystem) {
     while !self.window.should_close() {
         self.window.swap_buffers();
         self.glfw.poll_events();
 
         for (_, event) in glfw::flush_messages(&self.events) {
-            println!("{:?}", event);
-            
-            //TODO: Handle Keys
             match event {
-                glfw::WindowEvent::Key(Key::Escape, _, Action::Press, _) => {
-                    self.window.set_should_close(true)
-                },
+                WindowEvent::Key(key, _, action, _) => {
+                    input.update(key, action);
+                }
 
                 _ => {},
             }
